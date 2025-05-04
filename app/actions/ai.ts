@@ -1,11 +1,55 @@
 import { grokClient } from "@/lib/grok";
 
 /**
+ * Generates AI-based content using Grok AI with streaming.
+ * @param prompt The input prompt for AI.
+ * @param modelId The Grok model to use (default: "grok-3-beta").
+ * @returns AI-generated text output.
+ */
+export async function generateAIContent(
+  prompt: string,
+  modelId: string = "grok-3-beta"
+): Promise<string> {
+  try {
+    let fullResponse = "";
+    
+    const stream = await grokClient.chat.completions.create({
+      model: modelId,
+      messages: [
+        { 
+          role: "system", 
+          content: "You are an expert software engineer and code reviewer. Provide detailed, technical analysis of code changes." 
+        },
+        { 
+          role: "user", 
+          content: prompt 
+        }
+      ],
+      temperature: 0.7,
+      max_tokens: 1000,
+      stream: true
+    });
+
+    for await (const chunk of stream) {
+      const content = chunk.choices[0]?.delta?.content || "";
+      fullResponse += content;
+      console.log("Streaming chunk:", content);
+    }
+
+    console.log("Full AI Response:", fullResponse);
+    return fullResponse.trim() || "AI response was empty.";
+  } catch (error) {
+    console.error("Grok AI Error:", error);
+    return "Error generating AI response. Please try again.";
+  }
+}
+
+/**
  * Creates a structured system prompt for AI code analysis.
  * @param changes List of code changes (file name, type, and code snippet).
  * @returns A detailed system prompt for AI analysis.
  */
-function generateCodeReviewPrompt(
+export function generateCodeReviewPrompt(
   changes: { file: string; type: string; line: string }[]
 ): string {
   let prompt = `You are an expert software engineer and code reviewer. Your task is to analyze a GitHub Pull Request and provide a structured report. The analysis should include:
@@ -35,31 +79,6 @@ Below is the list of changes:\n\n`;
 export async function analyzeDiff(
   changes: { file: string; type: string; line: string }[]
 ): Promise<string> {
-  try {
-    const prompt = generateCodeReviewPrompt(changes);
-    
-    const completion = await grokClient.chat.completions.create({
-      model: "grok-3-beta",
-      messages: [
-        { 
-          role: "system", 
-          content: "You are an expert software engineer and code reviewer. Provide detailed, technical analysis of code changes." 
-        },
-        { 
-          role: "user", 
-          content: prompt 
-        }
-      ],
-      temperature: 0.7,
-      max_tokens: 1000
-    });
-
-    const analysis = completion.choices[0]?.message?.content;
-    console.log("AI Analysis:", analysis);
-    
-    return analysis || "No analysis generated.";
-  } catch (error) {
-    console.error("Error in analyzeDiff:", error);
-    return "Error generating code analysis. Please try again.";
-  }
+  const prompt = generateCodeReviewPrompt(changes);
+  return await generateAIContent(prompt);
 }
