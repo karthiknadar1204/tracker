@@ -7,6 +7,32 @@
 import axios from "axios";
 import { analyzeDiff } from "./ai";
 
+/**
+ * Generates a Mermaid flowchart diagram showing file changes.
+ * @param changes List of code changes with file, type, and line information.
+ * @returns Mermaid diagram string.
+ */
+function generateChangeFlowchart(
+  changes: { file: string; type: "add" | "remove"; line: string }[]
+): string {
+  let diagram = "graph TD;\n";
+  const fileChanges: Record<string, { adds: number; removes: number }> = {};
+
+  changes.forEach((change) => {
+    if (!fileChanges[change.file]) {
+      fileChanges[change.file] = { adds: 0, removes: 0 };
+    }
+    if (change.type === "add") fileChanges[change.file].adds++;
+    if (change.type === "remove") fileChanges[change.file].removes++;
+  });
+
+  Object.entries(fileChanges).forEach(([file, { adds, removes }]) => {
+    diagram += `  ${file}["${file}"] -->|Added: ${adds}, Removed: ${removes}| Changes;\n`;
+  });
+
+  return diagram;
+}
+
 export async function processPR(prUrl: string): Promise<void> {
   try {
     console.log("Processing PR:", prUrl);
@@ -42,6 +68,10 @@ export async function processPR(prUrl: string): Promise<void> {
     // AI analysis for PR
     const feedback = await analyzeDiff(changes);
     console.log("Feedback:", feedback);
+
+    // Generate Mermaid diagrams
+    const changeFlowchart = generateChangeFlowchart(changes);
+    console.log("Change Flowchart:", changeFlowchart);
 
     return feedback;
   } catch (error) {
