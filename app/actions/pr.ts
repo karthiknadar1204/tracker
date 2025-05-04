@@ -17,10 +17,12 @@ export async function processPR(prUrl: string): Promise<void> {
     const prNumber = prUrl.split("/")[7];
 
     // Construct the diff URL
+    // https://docs.github.com/en/rest/pulls/pulls?apiVersion=2022-11-28---> in get a pull request section.
     const diffUrl = `https://github.com/${user}/${repo}/pull/${prNumber}`;
     console.log("Diff URL:", diffUrl);
 
     // Make the API call to get the PR diff
+    // https://stackoverflow.com/questions/40393117/getting-file-diff-with-github-api
     const diffResponse = await axios.get(`${diffUrl}.diff`, {
       headers: { 
         Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
