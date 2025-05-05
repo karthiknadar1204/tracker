@@ -9,6 +9,7 @@ import {
   Star,
   CheckCircle2,
   Sparkles,
+  ChevronDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,6 +19,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default function Home() {
   return (
@@ -309,65 +316,54 @@ export default function Home() {
               Everything you need to know about KitKat Reviewer.
             </p>
           </div>
-          <div className="max-w-3xl mx-auto space-y-4">
-            <Card className="bg-black/40 border-blue-800/20 hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
-              <CardHeader>
-                <CardTitle className="text-lg text-white">
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="space-y-4">
+              <AccordionItem value="item-1" className="bg-black/40 border-blue-800/20 rounded-lg px-4">
+                <AccordionTrigger className="text-lg text-white hover:text-blue-400 py-4">
                   How accurate is the AI code review?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-400">
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-400 pb-4">
                   Our AI has been trained on millions of code repositories and
                   achieves over 90% accuracy in identifying bugs and suggesting
                   improvements. However, we recommend using it as a complement
                   to human reviews, not a replacement.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="bg-black/40 border-blue-800/20 hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
-              <CardHeader>
-                <CardTitle className="text-lg text-white">
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-2" className="bg-black/40 border-blue-800/20 rounded-lg px-4">
+                <AccordionTrigger className="text-lg text-white hover:text-blue-400 py-4">
                   Which programming languages are supported?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-400">
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-400 pb-4">
                   We currently support JavaScript, TypeScript, Python, Java, C#,
                   Ruby, Go, PHP, and Rust. We are constantly adding support for
                   more languages based on user feedback.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="bg-black/40 border-blue-800/20 hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
-              <CardHeader>
-                <CardTitle className="text-lg text-white">
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-3" className="bg-black/40 border-blue-800/20 rounded-lg px-4">
+                <AccordionTrigger className="text-lg text-white hover:text-blue-400 py-4">
                   Is my code secure with KitKat Reviewer?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-400">
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-400 pb-4">
                   Absolutely. We take security seriously. Your code is encrypted
                   in transit and at rest. We do not store your code after the
                   review is complete, and we never use your proprietary code to
                   train our models.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="bg-black/40 border-blue-800/20 hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
-              <CardHeader>
-                <CardTitle className="text-lg text-white">
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-4" className="bg-black/40 border-blue-800/20 rounded-lg px-4">
+                <AccordionTrigger className="text-lg text-white hover:text-blue-400 py-4">
                   Can I customize the review rules?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-400">
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-400 pb-4">
                   Yes, Pro and Enterprise plans allow you to customize review
                   rules to match your team's coding standards and focus on
                   specific areas that matter most to your projects.
-                </p>
-              </CardContent>
-            </Card>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </section>
 
