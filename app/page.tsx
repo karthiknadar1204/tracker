@@ -108,7 +108,7 @@ export default function Home() {
                   <GitPullRequest className="h-5 w-5 text-blue-400" />
                   <span className="text-sm font-medium text-blue-400">Pull Request #1234</span>
                 </div>
-                <CardTitle className="text-xl text-white">Add new authentication flow</CardTitle>
+                <CardTitle className="text-xl text-white">Authentication System Enhancement</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex gap-3">
@@ -118,11 +118,12 @@ export default function Home() {
                   <div className="space-y-2">
                     <div className="font-medium text-white">KitKat Reviewer</div>
                     <div className="text-sm text-gray-400">
-                      <p>I have reviewed your authentication flow implementation and found a few issues:</p>
+                      <p>Comprehensive review of your authentication implementation:</p>
                       <ul className="list-disc pl-5 mt-2 space-y-1">
-                        <li>The password validation regex does not match the requirements</li>
-                        <li>Potential memory leak in the useEffect hook</li>
-                        <li>Error handling needs improvement</li>
+                        <li>Security: Implement rate limiting for failed login attempts</li>
+                        <li>Performance: Add caching for JWT token validation</li>
+                        <li>Best Practices: Consider using refresh token rotation</li>
+                        <li>Testing: Add integration tests for OAuth flow</li>
                       </ul>
                     </div>
                   </div>
@@ -137,7 +138,7 @@ export default function Home() {
                   <Code className="h-5 w-5 text-blue-400" />
                   <span className="text-sm font-medium text-blue-400">Code Quality</span>
                 </div>
-                <CardTitle className="text-xl text-white">Performance Optimizations</CardTitle>
+                <CardTitle className="text-xl text-white">API Performance Optimization</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex gap-3">
@@ -145,13 +146,14 @@ export default function Home() {
                     <Zap className="h-5 w-5" />
                   </div>
                   <div className="space-y-2">
-                    <div className="font-medium text-white">Performance Review</div>
+                    <div className="font-medium text-white">Performance Analysis</div>
                     <div className="text-sm text-gray-400">
-                      <p>Suggested improvements for better performance:</p>
+                      <p>Key optimization opportunities identified:</p>
                       <ul className="list-disc pl-5 mt-2 space-y-1">
-                        <li>Implement proper caching strategies</li>
-                        <li>Optimize database queries</li>
-                        <li>Add lazy loading for components</li>
+                        <li>Implement Redis caching for frequent queries</li>
+                        <li>Add database query optimization with proper indexing</li>
+                        <li>Enable response compression for large payloads</li>
+                        <li>Consider implementing GraphQL for flexible data fetching</li>
                       </ul>
                     </div>
                   </div>
@@ -166,7 +168,7 @@ export default function Home() {
                   <Shield className="h-5 w-5 text-blue-400" />
                   <span className="text-sm font-medium text-blue-400">Security Review</span>
                 </div>
-                <CardTitle className="text-xl text-white">Security Best Practices</CardTitle>
+                <CardTitle className="text-xl text-white">API Security Assessment</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex gap-3">
@@ -176,11 +178,12 @@ export default function Home() {
                   <div className="space-y-2">
                     <div className="font-medium text-white">Security Analysis</div>
                     <div className="text-sm text-gray-400">
-                      <p>Key security recommendations:</p>
+                      <p>Critical security recommendations:</p>
                       <ul className="list-disc pl-5 mt-2 space-y-1">
-                        <li>Implement rate limiting</li>
-                        <li>Add input validation</li>
-                        <li>Secure headers configuration</li>
+                        <li>Implement CORS policy with strict origin validation</li>
+                        <li>Add request size limits to prevent DoS attacks</li>
+                        <li>Enable security headers (HSTS, CSP, X-Frame-Options)</li>
+                        <li>Implement API key rotation mechanism</li>
                       </ul>
                     </div>
                   </div>
