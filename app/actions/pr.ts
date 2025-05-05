@@ -6,6 +6,7 @@
 // 4. Update the PR
 import axios from "axios";
 import { analyzeDiff } from "./ai";
+import { postFeedback } from "./feedback";
 
 /**
  * Generates a Mermaid flowchart diagram showing file changes.
@@ -62,7 +63,8 @@ export async function processPR(prUrl: string): Promise<void> {
     const changes = parseDiff(diff);
     console.log("Changes:", changes);
     if (changes.length === 0) {
-      throw new Error("No significant changes detected in this PR.");
+      await postFeedback(prUrl, "No significant changes detected in this PR.");
+      return;
     }
 
     // AI analysis for PR
@@ -73,7 +75,14 @@ export async function processPR(prUrl: string): Promise<void> {
     const changeFlowchart = generateChangeFlowchart(changes);
     console.log("Change Flowchart:", changeFlowchart);
 
-    return feedback;
+    // Post feedback with AI analysis & diagrams
+    const feedBackData = await postFeedback(
+      prUrl,
+      `### PR Analysis\n\n${feedback}\n\n### Change Flowchart\n\`\`\`mermaid\n${changeFlowchart}\n\`\`\`\n\n`
+    );
+
+    console.log("Feedback posted:", feedBackData);
+    return feedBackData;
   } catch (error) {
     console.error("PR processing failed:", error);
     throw error;
