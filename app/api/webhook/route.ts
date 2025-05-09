@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
 
     // Validate webhook secret
     const signature = req.headers.get("X-Hub-Signature-256") || "";
-    const secret = process.env.WEBHOOK_SECRET;
+    const secret = process.env.WEBHOOK_SECRET as string;
     
     const hmac = crypto
       .createHmac("sha256", secret)
