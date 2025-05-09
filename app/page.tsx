@@ -101,14 +101,14 @@ export default function Home() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-            {/* Card 1 - PR Review */}
+            {/* Card 1 - Context-Aware Review Summaries */}
             <Card className="bg-black/40 border-blue-800/20 hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
               <CardHeader>
                 <div className="flex items-center gap-2 mb-2">
                   <GitPullRequest className="h-5 w-5 text-blue-400" />
                   <span className="text-sm font-medium text-blue-400">Pull Request #1234</span>
                 </div>
-                <CardTitle className="text-xl text-white">Authentication System Enhancement</CardTitle>
+                <CardTitle className="text-xl text-white">Smart Review Summaries</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex gap-3">
@@ -118,12 +118,12 @@ export default function Home() {
                   <div className="space-y-2">
                     <div className="font-medium text-white">KitKat Reviewer</div>
                     <div className="text-sm text-gray-400">
-                      <p>Comprehensive review of your authentication implementation:</p>
+                      <p>AI-driven summary of your PR changes:</p>
                       <ul className="list-disc pl-5 mt-2 space-y-1">
-                        <li>Security: Implement rate limiting for failed login attempts</li>
-                        <li>Performance: Add caching for JWT token validation</li>
-                        <li>Best Practices: Consider using refresh token rotation</li>
-                        <li>Testing: Add integration tests for OAuth flow</li>
+                        <li>Updated `auth.ts` to handle OAuth token refresh</li>
+                        <li>Added retry logic in `api_client.ts` for timeouts</li>
+                        <li>Refactored `utils.ts` for better modularity</li>
+                        <li>Suggestion: Add unit tests for new retry logic</li>
                       </ul>
                     </div>
                   </div>
@@ -131,14 +131,14 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            {/* Card 2 - Code Quality */}
+            {/* Card 2 - Proactive Bug Prevention */}
             <Card className="bg-black/40 border-blue-800/20 hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
               <CardHeader>
                 <div className="flex items-center gap-2 mb-2">
-                  <Code className="h-5 w-5 text-blue-400" />
-                  <span className="text-sm font-medium text-blue-400">Code Quality</span>
+                  <Shield className="h-5 w-5 text-blue-400" />
+                  <span className="text-sm font-medium text-blue-400">Bug Prevention</span>
                 </div>
-                <CardTitle className="text-xl text-white">API Performance Optimization</CardTitle>
+                <CardTitle className="text-xl text-white">Proactive Bug Detection</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex gap-3">
@@ -146,14 +146,14 @@ export default function Home() {
                     <Zap className="h-5 w-5" />
                   </div>
                   <div className="space-y-2">
-                    <div className="font-medium text-white">Performance Analysis</div>
+                    <div className="font-medium text-white">AI Analysis</div>
                     <div className="text-sm text-gray-400">
-                      <p>Key optimization opportunities identified:</p>
+                      <p>Prevent issues before they arise:</p>
                       <ul className="list-disc pl-5 mt-2 space-y-1">
-                        <li>Implement Redis caching for frequent queries</li>
-                        <li>Add database query optimization with proper indexing</li>
-                        <li>Enable response compression for large payloads</li>
-                        <li>Consider implementing GraphQL for flexible data fetching</li>
+                        <li>Detected unhandled edge case in `payment.ts`</li>
+                        <li>Potential memory leak in `cache.ts`; suggest cleanup</li>
+                        <li>Recommend input validation in `api.ts` to prevent XSS</li>
+                        <li>Add error logging for async operations</li>
                       </ul>
                     </div>
                   </div>
@@ -161,29 +161,29 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            {/* Card 3 - Security Review */}
+            {/* Card 3 - Customizable Feedback Styles */}
             <Card className="bg-black/40 border-blue-800/20 hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
               <CardHeader>
                 <div className="flex items-center gap-2 mb-2">
-                  <Shield className="h-5 w-5 text-blue-400" />
-                  <span className="text-sm font-medium text-blue-400">Security Review</span>
+                  <Code className="h-5 w-5 text-blue-400" />
+                  <span className="text-sm font-medium text-blue-400">Feedback Styles</span>
                 </div>
-                <CardTitle className="text-xl text-white">API Security Assessment</CardTitle>
+                <CardTitle className="text-xl text-white">Customizable Feedback</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex gap-3">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500/10 text-blue-400">
-                    <Shield className="h-5 w-5" />
+                    <Star className="h-5 w-5" />
                   </div>
                   <div className="space-y-2">
-                    <div className="font-medium text-white">Security Analysis</div>
+                    <div className="font-medium text-white">Tailored Reviews</div>
                     <div className="text-sm text-gray-400">
-                      <p>Critical security recommendations:</p>
+                      <p>Personalize AI feedback to suit your team:</p>
                       <ul className="list-disc pl-5 mt-2 space-y-1">
-                        <li>Implement CORS policy with strict origin validation</li>
-                        <li>Add request size limits to prevent DoS attacks</li>
-                        <li>Enable security headers (HSTS, CSP, X-Frame-Options)</li>
-                        <li>Implement API key rotation mechanism</li>
+                        <li>Concise summaries for quick reviews</li>
+                        <li>Detailed feedback with code examples</li>
+                        <li>Beginner-friendly tips for new developers</li>
+                        <li>Custom tone to match team culture</li>
                       </ul>
                     </div>
                   </div>
@@ -371,14 +371,15 @@ export default function Home() {
         </section>
 
         {/* Built by Section */}
-        <div className="container py-8 text-center">
+        <div className="container py-8 flex justify-end items-center border-t border-blue-800/20">
           <a 
             href="https://github.com/karthiknadar1204" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm font-medium"
+            className="inline-flex items-center gap-2 text-gray-300 hover:text-blue-400 transition-colors duration-200 text-base font-medium bg-black/40 px-6 py-3 rounded-full hover:bg-black/60"
           >
-            Built by Karthik
+            <span>Built with ❤️ by</span>
+            <span className="font-semibold">Karthik</span>
           </a>
         </div>
       </main>

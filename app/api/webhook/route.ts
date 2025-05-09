@@ -9,12 +9,8 @@ export async function POST(req: NextRequest) {
 
     // Validate webhook secret
     const signature = req.headers.get("X-Hub-Signature-256") || "";
-    const secret = process.env.GITHUB_WEBHOOK_SECRET;
+    const secret = process.env.WEBHOOK_SECRET;
     
-    if (!secret) {
-      return new Response("Webhook secret not configured", { status: 500 });
-    }
-
     const hmac = crypto
       .createHmac("sha256", secret)
       .update(JSON.stringify(body))
